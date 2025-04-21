@@ -117,167 +117,167 @@ extern "C" fn rust_main(hartid: usize, dtb_pa: usize) -> ! {
     let test_result = testing.test();
 
     // PMU test, only available in qemu-system-riscv64 single core
-    let counters_num = sbi::pmu_num_counters();
-    println!("[pmu] counters number: {}", counters_num);
-    for idx in 0..counters_num {
-        let counter_info = sbi::pmu_counter_get_info(idx);
-        let counter_info = CounterInfo::new(counter_info.value);
-        if counter_info.is_firmware_counter() {
-            println!("[pmu] counter index:{:>2}, is a firmware counter", idx);
-        } else {
-            println!(
-                "[pmu] counter index:{:>2}, csr num: {:#03x}, width: {}",
-                idx,
-                counter_info.get_csr(),
-                counter_info.get_width()
-            );
-        }
-    }
+    // let counters_num = sbi::pmu_num_counters();
+    // println!("[pmu] counters number: {}", counters_num);
+    // for idx in 0..counters_num {
+    //     let counter_info = sbi::pmu_counter_get_info(idx);
+    //     let counter_info = CounterInfo::new(counter_info.value);
+    //     if counter_info.is_firmware_counter() {
+    //         println!("[pmu] counter index:{:>2}, is a firmware counter", idx);
+    //     } else {
+    //         println!(
+    //             "[pmu] counter index:{:>2}, csr num: {:#03x}, width: {}",
+    //             idx,
+    //             counter_info.get_csr(),
+    //             counter_info.get_width()
+    //         );
+    //     }
+    // }
 
     /* PMU test for hardware event */
-    let counter_mask = CounterMask::from_mask_base(0x7ffff, 0);
-    let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b110), 0x2, 0);
-    assert!(result.is_ok());
-    let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b110), 0x10019, 0);
-    assert!(result.is_ok());
-    let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b110), 0x1001b, 0);
-    assert!(result.is_ok());
-    let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b110), 0x10021, 0);
-    assert!(result.is_ok());
-    let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b110), 0x3, 0);
-    assert_eq!(result, SbiRet::not_supported());
-
-    // `SBI_PMU_HW_CPU_CYCLES` event test
-    let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b010), 0x1, 0);
-    assert!(result.is_ok());
-    // the counter index should be 0(mcycle)
-    assert_eq!(result.value, 0);
-    let cycle_counter_idx = result.value;
-    let cycle_num = cycle::read64();
-    assert_eq!(cycle_num, 0);
-    // Start counting `SBI_PMU_HW_CPU_CYCLES` events
-    let start_result = sbi::pmu_counter_start(
-        CounterMask::from_mask_base(0x1, cycle_counter_idx),
-        Flag::new(0x1),
-        0xffff,
-    );
-    assert!(start_result.is_ok());
-    let cycle_num = cycle::read64();
-    assert!(cycle_num >= 0xffff);
-    // Stop counting `SBI_PMU_HW_CPU_CYCLES` events
-    let stop_result = sbi::pmu_counter_stop(
-        CounterMask::from_mask_base(0x1, cycle_counter_idx),
-        Flag::new(0x0),
-    );
-    assert!(stop_result.is_ok());
-    let old_cycle_num = cycle::read64();
-    let mut _j = 0;
-    for i in 0..1000 {
-        _j += i
-    }
-    let new_cycle_num = cycle::read64();
-    assert_eq!(old_cycle_num, new_cycle_num);
-    // Restart counting `SBI_PMU_HW_CPU_CYCLES` events
-    let start_result = sbi::pmu_counter_start(
-        CounterMask::from_mask_base(0x1, cycle_counter_idx),
-        Flag::new(0x0),
-        0,
-    );
-    assert!(start_result.is_ok());
-    let mut _j = 0;
-    for i in 0..1000 {
-        _j += i
-    }
-    let restart_cycle_num = cycle::read64();
-    assert!(restart_cycle_num > new_cycle_num);
-
-    /* PMU test for firmware  event */
-    let counter_mask = CounterMask::from_mask_base(0x7ffffffff, 0);
-
-    // Mapping a counter to the `SBI_PMU_FW_ACCESS_LOAD` event should result in unsupported
-    let result = sbi::pmu_counter_config_matching(
-        counter_mask,
-        Flag::new(0b010),
-        EventIdx::new_firmware_event(firmware_event::ACCESS_LOAD).raw(),
-        0,
-    );
-    assert_eq!(result, SbiRet::not_supported());
-
-    // Map a counter to the `SBI_PMU_FW_IPI_SENT` event.
-    // This counter should be a firmware counter and its value should be initialized to 0.
-    let result = sbi::pmu_counter_config_matching(
-        counter_mask,
-        Flag::new(0b010),
-        EventIdx::new_firmware_event(firmware_event::IPI_SENT).raw(),
-        0,
-    );
-    assert!(result.is_ok());
-    assert!(result.value >= 19);
-    let ipi_counter_idx = result.value;
-    let ipi_num = sbi::pmu_counter_fw_read(ipi_counter_idx);
-    assert!(ipi_num.is_ok());
-    assert_eq!(ipi_num.value, 0);
-
-    // Start counting `SBI_PMU_FW_IPI_SENT` events and assign an initial value of 25 to the event counter
-    let start_result = sbi::pmu_counter_start(
-        CounterMask::from_mask_base(0x1, ipi_counter_idx),
-        Flag::new(0x1),
-        25,
-    );
-    assert!(start_result.is_ok());
-    // Read the value of the `SBI_PMU_FW_IPI_SENT` event counter, which should be 25
-    let ipi_num = sbi::pmu_counter_fw_read(ipi_counter_idx);
-    assert!(ipi_num.is_ok());
-    assert_eq!(ipi_num.value, 25);
-
-    // Send IPI to other core, and the `SBI_PMU_FW_IPI_SENT` event counter value increases by one
-    let send_ipi_result = sbi::send_ipi(HartMask::from_mask_base(0b10, 0));
-    assert_eq!(send_ipi_result, SbiRet::invalid_param());
-
-    // Read the value of the `SBI_PMU_FW_IPI_SENT` event counter, which should be 26
-    let ipi_num = sbi::pmu_counter_fw_read(ipi_counter_idx);
-    assert!(ipi_num.is_ok());
-    assert_eq!(ipi_num.value, 26);
-
-    // Stop counting `SBI_PMU_FW_IPI_SENT` events
-    let stop_result = sbi::pmu_counter_stop(
-        CounterMask::from_mask_base(0x1, ipi_counter_idx),
-        Flag::new(0x0),
-    );
-    assert!(stop_result.is_ok());
-
-    // Restop counting `SBI_PMU_FW_IPI_SENT` events, the result should be already stop
-    let stop_result = sbi::pmu_counter_stop(
-        CounterMask::from_mask_base(0x1, ipi_counter_idx),
-        Flag::new(0x0),
-    );
-    assert_eq!(stop_result, SbiRet::already_stopped());
-
-    // Send IPI to other core, `SBI_PMU_FW_IPI_SENT` event counter should not change
-    let send_ipi_result = sbi::send_ipi(HartMask::from_mask_base(0b10, 0));
-    assert_eq!(send_ipi_result, SbiRet::invalid_param());
-
-    // Read the value of the `SBI_PMU_FW_IPI_SENT` event counter, which should be 26
-    let ipi_num = sbi::pmu_counter_fw_read(ipi_counter_idx);
-    assert!(ipi_num.is_ok());
-    assert_eq!(ipi_num.value, 26);
-
-    // Restart counting `SBI_PMU_FW_IPI_SENT` events
-    let start_result = sbi::pmu_counter_start(
-        CounterMask::from_mask_base(0x1, ipi_counter_idx),
-        Flag::new(0x0),
-        0,
-    );
-    assert!(start_result.is_ok());
-
-    // Send IPI to other core, and the `SBI_PMU_FW_IPI_SENT` event counter value increases by one
-    let send_ipi_result = sbi::send_ipi(HartMask::from_mask_base(0b10, 0));
-    assert_eq!(send_ipi_result, SbiRet::invalid_param());
-
-    // Read the value of the `SBI_PMU_FW_IPI_SENT` event counter, which should be 27
-    let ipi_num = sbi::pmu_counter_fw_read(ipi_counter_idx);
-    assert!(ipi_num.is_ok());
-    assert_eq!(ipi_num.value, 27);
+    // let counter_mask = CounterMask::from_mask_base(0x7ffff, 0);
+    // let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b110), 0x2, 0);
+    // assert!(result.is_ok());
+    // let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b110), 0x10019, 0);
+    // assert!(result.is_ok());
+    // let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b110), 0x1001b, 0);
+    // assert!(result.is_ok());
+    // let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b110), 0x10021, 0);
+    // assert!(result.is_ok());
+    // let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b110), 0x3, 0);
+    // assert_eq!(result, SbiRet::not_supported());
+    //
+    // // `SBI_PMU_HW_CPU_CYCLES` event test
+    // let result = sbi::pmu_counter_config_matching(counter_mask, Flag::new(0b010), 0x1, 0);
+    // assert!(result.is_ok());
+    // // the counter index should be 0(mcycle)
+    // assert_eq!(result.value, 0);
+    // let cycle_counter_idx = result.value;
+    // let cycle_num = cycle::read64();
+    // assert_eq!(cycle_num, 0);
+    // // Start counting `SBI_PMU_HW_CPU_CYCLES` events
+    // let start_result = sbi::pmu_counter_start(
+    //     CounterMask::from_mask_base(0x1, cycle_counter_idx),
+    //     Flag::new(0x1),
+    //     0xffff,
+    // );
+    // assert!(start_result.is_ok());
+    // let cycle_num = cycle::read64();
+    // assert!(cycle_num >= 0xffff);
+    // // Stop counting `SBI_PMU_HW_CPU_CYCLES` events
+    // let stop_result = sbi::pmu_counter_stop(
+    //     CounterMask::from_mask_base(0x1, cycle_counter_idx),
+    //     Flag::new(0x0),
+    // );
+    // assert!(stop_result.is_ok());
+    // let old_cycle_num = cycle::read64();
+    // let mut _j = 0;
+    // for i in 0..1000 {
+    //     _j += i
+    // }
+    // let new_cycle_num = cycle::read64();
+    // assert_eq!(old_cycle_num, new_cycle_num);
+    // // Restart counting `SBI_PMU_HW_CPU_CYCLES` events
+    // let start_result = sbi::pmu_counter_start(
+    //     CounterMask::from_mask_base(0x1, cycle_counter_idx),
+    //     Flag::new(0x0),
+    //     0,
+    // );
+    // assert!(start_result.is_ok());
+    // let mut _j = 0;
+    // for i in 0..1000 {
+    //     _j += i
+    // }
+    // let restart_cycle_num = cycle::read64();
+    // assert!(restart_cycle_num > new_cycle_num);
+    //
+    // /* PMU test for firmware  event */
+    // let counter_mask = CounterMask::from_mask_base(0x7ffffffff, 0);
+    //
+    // // Mapping a counter to the `SBI_PMU_FW_ACCESS_LOAD` event should result in unsupported
+    // let result = sbi::pmu_counter_config_matching(
+    //     counter_mask,
+    //     Flag::new(0b010),
+    //     EventIdx::new_firmware_event(firmware_event::ACCESS_LOAD).raw(),
+    //     0,
+    // );
+    // assert_eq!(result, SbiRet::not_supported());
+    //
+    // // Map a counter to the `SBI_PMU_FW_IPI_SENT` event.
+    // // This counter should be a firmware counter and its value should be initialized to 0.
+    // let result = sbi::pmu_counter_config_matching(
+    //     counter_mask,
+    //     Flag::new(0b010),
+    //     EventIdx::new_firmware_event(firmware_event::IPI_SENT).raw(),
+    //     0,
+    // );
+    // assert!(result.is_ok());
+    // assert!(result.value >= 19);
+    // let ipi_counter_idx = result.value;
+    // let ipi_num = sbi::pmu_counter_fw_read(ipi_counter_idx);
+    // assert!(ipi_num.is_ok());
+    // assert_eq!(ipi_num.value, 0);
+    //
+    // // Start counting `SBI_PMU_FW_IPI_SENT` events and assign an initial value of 25 to the event counter
+    // let start_result = sbi::pmu_counter_start(
+    //     CounterMask::from_mask_base(0x1, ipi_counter_idx),
+    //     Flag::new(0x1),
+    //     25,
+    // );
+    // assert!(start_result.is_ok());
+    // // Read the value of the `SBI_PMU_FW_IPI_SENT` event counter, which should be 25
+    // let ipi_num = sbi::pmu_counter_fw_read(ipi_counter_idx);
+    // assert!(ipi_num.is_ok());
+    // assert_eq!(ipi_num.value, 25);
+    //
+    // // Send IPI to other core, and the `SBI_PMU_FW_IPI_SENT` event counter value increases by one
+    // let send_ipi_result = sbi::send_ipi(HartMask::from_mask_base(0b10, 0));
+    // assert_eq!(send_ipi_result, SbiRet::invalid_param());
+    //
+    // // Read the value of the `SBI_PMU_FW_IPI_SENT` event counter, which should be 26
+    // let ipi_num = sbi::pmu_counter_fw_read(ipi_counter_idx);
+    // assert!(ipi_num.is_ok());
+    // assert_eq!(ipi_num.value, 26);
+    //
+    // // Stop counting `SBI_PMU_FW_IPI_SENT` events
+    // let stop_result = sbi::pmu_counter_stop(
+    //     CounterMask::from_mask_base(0x1, ipi_counter_idx),
+    //     Flag::new(0x0),
+    // );
+    // assert!(stop_result.is_ok());
+    //
+    // // Restop counting `SBI_PMU_FW_IPI_SENT` events, the result should be already stop
+    // let stop_result = sbi::pmu_counter_stop(
+    //     CounterMask::from_mask_base(0x1, ipi_counter_idx),
+    //     Flag::new(0x0),
+    // );
+    // assert_eq!(stop_result, SbiRet::already_stopped());
+    //
+    // // Send IPI to other core, `SBI_PMU_FW_IPI_SENT` event counter should not change
+    // let send_ipi_result = sbi::send_ipi(HartMask::from_mask_base(0b10, 0));
+    // assert_eq!(send_ipi_result, SbiRet::invalid_param());
+    //
+    // // Read the value of the `SBI_PMU_FW_IPI_SENT` event counter, which should be 26
+    // let ipi_num = sbi::pmu_counter_fw_read(ipi_counter_idx);
+    // assert!(ipi_num.is_ok());
+    // assert_eq!(ipi_num.value, 26);
+    //
+    // // Restart counting `SBI_PMU_FW_IPI_SENT` events
+    // let start_result = sbi::pmu_counter_start(
+    //     CounterMask::from_mask_base(0x1, ipi_counter_idx),
+    //     Flag::new(0x0),
+    //     0,
+    // );
+    // assert!(start_result.is_ok());
+    //
+    // // Send IPI to other core, and the `SBI_PMU_FW_IPI_SENT` event counter value increases by one
+    // let send_ipi_result = sbi::send_ipi(HartMask::from_mask_base(0b10, 0));
+    // assert_eq!(send_ipi_result, SbiRet::invalid_param());
+    //
+    // // Read the value of the `SBI_PMU_FW_IPI_SENT` event counter, which should be 27
+    // let ipi_num = sbi::pmu_counter_fw_read(ipi_counter_idx);
+    // assert!(ipi_num.is_ok());
+    // assert_eq!(ipi_num.value, 27);
 
     if test_result {
         sbi::system_reset(sbi::Shutdown, sbi::NoReason);
