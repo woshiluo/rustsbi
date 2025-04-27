@@ -12,6 +12,8 @@ pub unsafe extern "C" fn boot() -> ! {
     unsafe {
         naked_asm!(
             ".align 2",
+            "call    {locate_stack}",
+            "csrw    mscratch, sp",
             // Switch stacks
             "csrrw  sp, mscratch, sp",
             // Allocate stack space
@@ -24,8 +26,8 @@ pub unsafe extern "C" fn boot() -> ! {
             csrw    mepc, t0",
             // Restore registers
             "
-        ld      a0, 1*8(sp)
-        ld      a1, 2*8(sp)",
+            ld      a0, 1*8(sp)
+            ld      a1, 2*8(sp)",
             // Restore stack pointer
             "addi   sp, sp, 3*8",
             // Switch stacks back
@@ -33,6 +35,7 @@ pub unsafe extern "C" fn boot() -> ! {
             // Return from machine mode
             "mret",
             boot_handler = sym boot_handler,
+            locate_stack = sym crate::trap_stack::locate,
         );
     }
 }
