@@ -35,7 +35,7 @@ cargo prototyper --fdt ./sunxi.dtb --payload ./Image
 
 （这两个文件应当通过放在项目根目录下，Image 文件应通过其他渠道获取）
 
-编译后 `target/riscv64imac-unknown-none-elf/release/rustsbi-prototyper-payload.bin` 即位，上文所需。
+编译后 `target/riscv64imac-unknown-none-elf/release/rustsbi-prototyper-payload.bin` 即为上文所需。
 
 ## 刷写 SyterKit
 
