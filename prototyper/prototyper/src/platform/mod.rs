@@ -101,31 +101,32 @@ impl Platform {
 
     fn sbi_find_and_init_console(&mut self, root: &serde_device_tree::buildin::Node) {
         //  Get console device info
-        if let Some(stdout_path) = root.chosen_stdout_path() {
-            if let Some(node) = root.find(stdout_path) {
-                let info = get_compatible_and_range(&node);
-                if let Some((compatible, regs)) = info {
-                    for device_id in compatible.iter() {
-                        if UART16650U8_COMPATIBLE.contains(&device_id) {
-                            self.info.console = Some((regs.start, MachineConsoleType::Uart16550U8));
-                        }
-                        if UART16650U32_COMPATIBLE.contains(&device_id) {
-                            self.info.console =
-                                Some((regs.start, MachineConsoleType::Uart16550U32));
-                        }
-                        if UARTAXILITE_COMPATIBLE.contains(&device_id) {
-                            self.info.console = Some((regs.start, MachineConsoleType::UartAxiLite));
-                        }
-                        if UARTBFLB_COMPATIBLE.contains(&device_id) {
-                            self.info.console = Some((regs.start, MachineConsoleType::UartBflb));
-                        }
-                        if UARTSIFIVE_COMPATIBLE.contains(&device_id) {
-                            self.info.console = Some((regs.start, MachineConsoleType::UartSifive));
-                        }
-                    }
-                }
-            }
-        }
+        // if let Some(stdout_path) = root.chosen_stdout_path() {
+        //     if let Some(node) = root.find(stdout_path) {
+        //         let info = get_compatible_and_range(&node);
+        //         if let Some((compatible, regs)) = info {
+        //             for device_id in compatible.iter() {
+        //                 if UART16650U8_COMPATIBLE.contains(&device_id) {
+        //                     self.info.console = Some((regs.start, MachineConsoleType::Uart16550U8));
+        //                 }
+        //                 if UART16650U32_COMPATIBLE.contains(&device_id) {
+        //                     self.info.console =
+        //                         Some((regs.start, MachineConsoleType::Uart16550U32));
+        //                 }
+        //                 if UARTAXILITE_COMPATIBLE.contains(&device_id) {
+        //                     self.info.console = Some((regs.start, MachineConsoleType::UartAxiLite));
+        //                 }
+        //                 if UARTBFLB_COMPATIBLE.contains(&device_id) {
+        //                     self.info.console = Some((regs.start, MachineConsoleType::UartBflb));
+        //                 }
+        //                 if UARTSIFIVE_COMPATIBLE.contains(&device_id) {
+        //                     self.info.console = Some((regs.start, MachineConsoleType::UartSifive));
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        self.info.console = Some((0x2500000, MachineConsoleType::Uart16550U32));
 
         // init console and logger
         self.sbi_console_init();

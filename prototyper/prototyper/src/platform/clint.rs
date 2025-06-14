@@ -3,8 +3,8 @@ use core::arch::asm;
 use xuantie_riscv::peripheral::clint::THeadClint;
 
 use crate::sbi::ipi::IpiDevice;
-pub(crate) const SIFIVE_CLINT_COMPATIBLE: [&str; 1] = ["riscv,clint0"];
-pub(crate) const THEAD_CLINT_COMPATIBLE: [&str; 1] = ["thead,c900-clint"];
+pub(crate) const SIFIVE_CLINT_COMPATIBLE: [&str; 1] = ["allwinner,sun20i-d1-clit"];
+pub(crate) const THEAD_CLINT_COMPATIBLE: [&str; 1] = ["allwinner,sun20i-d1-clint"];
 
 #[doc(hidden)]
 #[allow(unused)]

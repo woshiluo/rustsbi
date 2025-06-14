@@ -88,22 +88,22 @@ pub fn set_pmp(memory_range: &Range<usize>) {
         assert_eq!(RODATA_START_ADDRESS & 0x3, 0);
         assert_eq!(RODATA_END_ADDRESS & 0x3, 0);
 
-        pmpcfg0::set_pmp(0, Range::OFF, Permission::NONE, false);
+        pmpcfg0::set_pmp(0, Range::OFF, Permission::RWX, false);
         pmpaddr0::write(0);
         pmpcfg0::set_pmp(1, Range::TOR, Permission::RWX, false);
-        pmpaddr1::write(memory_range.start >> 2);
-        pmpcfg0::set_pmp(2, Range::TOR, Permission::RWX, false);
-        pmpaddr2::write(SBI_START_ADDRESS >> 2);
-        pmpcfg0::set_pmp(3, Range::TOR, Permission::NONE, false);
-        pmpaddr3::write(RODATA_START_ADDRESS >> 2);
-        pmpcfg0::set_pmp(4, Range::TOR, Permission::NONE, false);
-        pmpaddr4::write(RODATA_END_ADDRESS >> 2);
-        pmpcfg0::set_pmp(5, Range::TOR, Permission::NONE, false);
-        pmpaddr5::write(SBI_END_ADDRESS >> 2);
-        pmpcfg0::set_pmp(6, Range::TOR, Permission::RWX, false);
-        pmpaddr6::write(memory_range.end >> 2);
-        pmpcfg0::set_pmp(7, Range::TOR, Permission::RWX, false);
-        pmpaddr7::write(usize::MAX >> 2);
+        pmpaddr1::write(usize::MAX >> 2);
+        // pmpcfg0::set_pmp(2, Range::TOR, Permission::RWX, false);
+        // pmpaddr2::write(SBI_START_ADDRESS >> 2);
+        // pmpcfg0::set_pmp(3, Range::TOR, Permission::NONE, false);
+        // pmpaddr3::write(RODATA_START_ADDRESS >> 2);
+        // pmpcfg0::set_pmp(4, Range::TOR, Permission::NONE, false);
+        // pmpaddr4::write(RODATA_END_ADDRESS >> 2);
+        // pmpcfg0::set_pmp(5, Range::TOR, Permission::NONE, false);
+        // pmpaddr5::write(SBI_END_ADDRESS >> 2);
+        // pmpcfg0::set_pmp(6, Range::TOR, Permission::RWX, false);
+        // pmpaddr6::write(memory_range.end >> 2);
+        // pmpcfg0::set_pmp(7, Range::TOR, Permission::RWX, false);
+        // pmpaddr7::write(usize::MAX >> 2);
     }
 }
 

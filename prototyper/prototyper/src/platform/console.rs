@@ -6,7 +6,7 @@ use uart16550::{Register, Uart16550};
 use crate::sbi::console::ConsoleDevice;
 
 pub(crate) const UART16650U8_COMPATIBLE: [&str; 1] = ["ns16550a"];
-pub(crate) const UART16650U32_COMPATIBLE: [&str; 1] = ["snps,dw-apb-uart"];
+pub(crate) const UART16650U32_COMPATIBLE: [&str; 1] = ["allwinner,sun20i-uart"];
 pub(crate) const UARTAXILITE_COMPATIBLE: [&str; 1] = ["xlnx,xps-uartlite-1.00.a"];
 pub(crate) const UARTBFLB_COMPATIBLE: [&str; 1] = ["bflb,bl808-uart"];
 pub(crate) const UARTSIFIVE_COMPATIBLE: [&str; 1] = ["sifive,uart0"];

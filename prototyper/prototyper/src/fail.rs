@@ -12,6 +12,7 @@ compile_error!("feature \"payload\" and feature \"jump\" cannot be enabled at th
 #[panic_handler]
 fn panic(info: &core::panic::PanicInfo) -> ! {
     use ::riscv::register::*;
+    println!("panic");
     error!("Hart {} {info}", current_hartid());
     error!("-----------------------------");
     error!("mcause:  {:?}", mcause::read().cause());
@@ -23,6 +24,7 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
 }
 
 pub fn unsupported_trap(trap: Option<Trap<Interrupt, Exception>>) -> ! {
+    println!("un");
     error!("-----------------------------");
     error!("trap:    {trap:?}");
     error!("mepc:    {:#018x}", mepc::read());
