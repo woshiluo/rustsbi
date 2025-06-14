@@ -58,6 +58,8 @@ cargo flash --release
 
 ## 测试
 
+正常上电。
+
 理想情况下，应当在 UART 输出 RustSBI Prototyper 的欢迎页面。（可能需要等待 ~2min，加载需要时间）
 
 非理想情况下，可能会报错 `Invalid MBR signature` 并 fallback 到 shell 中。
