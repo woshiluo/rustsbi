@@ -58,7 +58,7 @@ pub fn run(arg: &BenchArg) -> Option<ExitStatus> {
             }
             Err(err_msg) => {
                 error!("{}", err_msg);
-                return Some(<ExitStatus as std::os::unix::process::ExitStatusExt>::from_raw(1));
+                return None;
             }
         }
     } else {
