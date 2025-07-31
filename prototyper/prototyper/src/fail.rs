@@ -11,8 +11,8 @@ compile_error!("feature \"payload\" and feature \"jump\" cannot be enabled at th
 
 #[panic_handler]
 fn panic(info: &core::panic::PanicInfo) -> ! {
-    use ::riscv::register::*;
     println!("panic");
+    use ::riscv::register::*;
     error!("Hart {} {info}", current_hartid());
     error!("-----------------------------");
     error!("mcause:  {:?}", mcause::read().cause());
