@@ -5541,4 +5541,487 @@ qvq
 [    0.000000] ---[ end trace aa3fe55bef28eab3 ]---
 [    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
 [    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the idle task! ]---
-
+ÿüøø_ò€øÀðüñ•>A €@DQúüï HR€AíÀ@@@ð@  € €Ààü(€ 08þà0þþðÿðøÀÀðÿüþþàÀðþøà@€0Minicom2.@ðþÀÀ€<ðpüüàÿøøÀà€Ï üâ|Œx0`øÿ
+ _____     _           _____ _ _   
+|   __|_ _| |_ ___ ___|  |  |_| |_ 
+|__   | | |  _| -_|  _|    -| | _| 
+|_____|_  |_| |___|_| |__|__|_|_|  
+      |___|                        
+***********************************
+ syterkit v0.0.0 Commit: 2c7791d3
+ github.com/YuzukiHD/SyterKit      
+***********************************
+ Built by: rustc 1.91.0-nightly (f2824da9 2025-08-28)
+
+DRAM size: 512M ð
+CLK: CPU PLL=PLL_CPU FREQ=1008MHz
+CLK: PLL_peri (2X)=1200MHz, (1X)=600MHz, (800M)=800MHz
+CLK: PLL_ddr=792MHz
+initialize sdmmc pins...
+initialize SMHC device...
+initializing SD card...
+SD card initialized, size: 119.08GB
+DEBUG - Creating new embedded-sdmmc::VolumeManager
+qwq
+qwq2
+load vol
+open dir
+read
+qvq, 1445865172
+[RustSBI] INFO  - Hello RustSBI!
+[RustSBI] INFO  - RustSBI version 0.4.0
+[RustSBI] INFO  - .______       __    __      _______.___________.  _______..______   __
+[RustSBI] INFO  - |   _  \     |  |  |  |    /       |           | /       ||   _  \ |  |
+[RustSBI] INFO  - |  |_)  |    |  |  |  |   |   (----`---|  |----`|   (----`|  |_)  ||  |
+[RustSBI] INFO  - |      /     |  |  |  |    \   \       |  |      \   \    |   _  < |  |
+[RustSBI] INFO  - |  |\  \----.|  `--'  |.----)   |      |  |  .----)   |   |  |_)  ||  |
+[RustSBI] INFO  - | _| `._____| \______/ |_______/       |__|  |_______/    |______/ |__|
+[RustSBI] INFO  - Initializing RustSBI machine-mode environment.
+[RustSBI] INFO  - Platform Name                 : Allwinner D1 Nezha
+[RustSBI] INFO  - Platform HART Count           : 1
+[RustSBI] INFO  - Enabled HARTs                 : [0]
+[RustSBI] INFO  - Platform IPI Extension        : TheadClint (Base Address: 0x14000000)
+[RustSBI] INFO  - Platform Console Extension    : Uart16550U32 (Base Address: 0x2500000)
+[RustSBI] WARN  - Platform Reset Device         : Not Available
+[RustSBI] INFO  - Platform HSM Extension        : Available
+[RustSBI] INFO  - Platform RFence Extension     : Available
+[RustSBI] INFO  - Platform SUSP Extension       : Available
+[RustSBI] INFO  - Platform PMU Extension        : Available
+[RustSBI] INFO  - Memory range                  : 0x40000000 - 0x80000000
+[RustSBI] INFO  - Platform Status               : Platform initialization complete and ready.
+[RustSBI] INFO  - PMP Configuration
+[RustSBI] INFO  - PMP        Range      Permission      Address                       
+[RustSBI] INFO  - PMP 0:     OFF        NONE            0x00000000
+[RustSBI] INFO  - PMP 1-2:   TOR        RWX/RWX         0x40000000 - 0x41000000
+[RustSBI] INFO  - PMP 3-5:   TOR        NONE/NONE       0x41017000 - 0x41020000 - 0x4104c000
+[RustSBI] INFO  - PMP 6:     TOR        RWX             0x80000000
+[RustSBI] INFO  - PMP 7:     TOR        RWX             0xffffffffffffffff
+[RustSBI] INFO  - Boot HART ID                  : 0
+[RustSBI] INFO  - Boot HART Privileged Version: : Version1_11
+[RustSBI] INFO  - Boot HART MHPM Mask:          : 0x000007
+[RustSBI] INFO  - Redirecting hart 0 to 0x00000041200000 in Supervisor mode.
+ _____     _           _____ _ _   
+|   __|_ _| |_ ___ ___|  |  |_| |_ 
+|__   | | |  _| -_|  _|    -| | _| 
+|_____|_  |_| |___|_| |__|__|_|_|  
+      |___|                        
+***********************************
+ syterkit v0.0.0 Commit: 2c7791d3
+ github.com/YuzukiHD/SyterKit      
+***********************************
+ Built by: rustc 1.91.0-nightly (f2824da9 2025-08-28)
+
+DRAM size: 512M ð
+CLK: CPU PLL=PLL_CPU FREQ=1008MHz
+CLK: PLL_peri (2X)=1200MHz, (1X)=600MHz, (800M)=800MHz
+CLK: PLL_ddr=792MHz
+initialize sdmmc pins...
+initialize SMHC device...
+initializing SD card...
+SD card initialized, size: 119.08GB
+DEBUG - Creating new embedded-sdmmc::VolumeManager
+qwq
+qwq2
+load vol
+open dir
+read
+qvq, 1448469926
+[RustSBI] INFO  - Hello RustSBI!
+[RustSBI] INFO  - RustSBI version 0.4.0
+[RustSBI] INFO  - .______       __    __      _______.___________.  _______..______   __
+[RustSBI] INFO  - |   _  \     |  |  |  |    /       |           | /       ||   _  \ |  |
+[RustSBI] INFO  - |  |_)  |    |  |  |  |   |   (----`---|  |----`|   (----`|  |_)  ||  |
+[RustSBI] INFO  - |      /     |  |  |  |    \   \       |  |      \   \    |   _  < |  |
+[RustSBI] INFO  - |  |\  \----.|  `--'  |.----)   |      |  |  .----)   |   |  |_)  ||  |
+[RustSBI] INFO  - | _| `._____| \______/ |_______/       |__|  |_______/    |______/ |__|
+[RustSBI] INFO  - Initializing RustSBI machine-mode environment.
+[RustSBI] INFO  - Platform Name                 : Allwinner D1 Nezha
+[RustSBI] INFO  - Platform HART Count           : 1
+[RustSBI] INFO  - Enabled HARTs                 : [0]
+[RustSBI] INFO  - Platform IPI Extension        : TheadClint (Base Address: 0x14000000)
+[RustSBI] INFO  - Platform Console Extension    : Uart16550U32 (Base Address: 0x2500000)
+[RustSBI] WARN  - Platform Reset Device         : Not Available
+[RustSBI] INFO  - Platform HSM Extension        : Available
+[RustSBI] INFO  - Platform RFence Extension     : Available
+[RustSBI] INFO  - Platform SUSP Extension       : Available
+[RustSBI] INFO  - Platform PMU Extension        : Available
+[RustSBI] INFO  - Memory range                  : 0x40000000 - 0x80000000
+[RustSBI] INFO  - Platform Status               : Platform initialization complete and ready.
+[RustSBI] INFO  - PMP Configuration
+[RustSBI] INFO  - PMP        Range      Permission      Address                       
+[RustSBI] INFO  - PMP 0:     OFF        NONE            0x00000000
+[RustSBI] INFO  - PMP 1-2:   TOR        RWX/RWX         0x40000000 - 0x41000000
+[RustSBI] INFO  - PMP 3-5:   TOR        NONE/NONE       0x41017000 - 0x41020000 - 0x4104c000
+[RustSBI] INFO  - PMP 6:     TOR        RWX             0x80000000
+[RustSBI] INFO  - PMP 7:     TOR        RWX             0xffffffffffffffff
+[RustSBI] INFO  - Boot HART ID                  : 0
+[RustSBI] INFO  - Boot HART Privileged Version: : Version1_11
+[RustSBI] INFO  - Boot HART MHPM Mask:          : 0x000007
+[RustSBI] INFO  - Redirecting hart 0 to 0x00000041200000 in Supervisor mode.
+[    0.000000] Linux version 6.12.0-gd9d19ed4ba82 (woshiluo@woshiluo-laptop) (riscv64-linux-gnu-gcc (GCC) 15.1.0, GNU ld (GNU Binutils) 2.44) #32 SMP EVL Mon Sep 29 23:30:28 CST 2025
+[    0.000000] Machine model: Allwinner D1 Nezha
+[    0.000000] SBI specification v2.0 detected
+[    0.000000] SBI implementation ID=0x4 Version=0x400
+[    0.000000] SBI TIME extension detected
+[    0.000000] SBI IPI extension detected
+[    0.000000] SBI RFENCE extension detected
+[    0.000000] SBI DBCN extension detected
+[    0.000000] earlycon: sbi0 at I/O port 0x0 (options '')
+[    0.000000] printk: legacy bootconsole [sbi0] enabled
+[    0.000000] efi: UEFI not found.
+[    0.000000] Zone ranges:
+[    0.000000]   DMA32    [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000] SBI HSM extension detected
+[    0.000000] riscv: base ISA extensions acdfim
+[    0.000000] riscv: ELF capabilities acdfim
+[    0.000000] percpu: Embedded 23 pages/cpu s57000 r8192 d29016 u94208
+[    0.000000] Kernel command line: console=ttyS0,115200n8 debug loglevel=7,initcall_debug=1 init=/init earlycon=sbi clk_ignore_unused initcall_debug=0 console=ttyS0,115200 console=tty0 root=UUID=8fd6ad3c-a9dc-4d6a-9a42-307572fe21b8 cma=8M mac_addr=84:10:12:12:01:04 LANG=en_US.UTF-8
+[    0.000000] Unknown kernel command line parameters "cma=8M mac_addr=84:10:12:12:01:04 LANG=en_US.UTF-8", will be passed to user space.
+[    0.000000] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 262144
+[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size adjusted to 1MB
+[    0.000000] software IO TLB: area num 1.
+[    0.000000] software IO TLB: mapped [mem 0x000000007dd00000-0x000000007de00000] (1MB)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]       fixmap : 0xffffffc4fea00000 - 0xffffffc4ff000000   (6144 kB)
+[    0.000000]       pci io : 0xffffffc4ff000000 - 0xffffffc500000000   (  16 MB)
+[    0.000000]      vmemmap : 0xffffffc500000000 - 0xffffffc600000000   (4096 MB)
+[    0.000000]      vmalloc : 0xffffffc600000000 - 0xffffffd600000000   (  64 GB)
+[    0.000000]      modules : 0xffffffff0179d000 - 0xffffffff80000000   (2024 MB)
+[    0.000000]       lowmem : 0xffffffd600000000 - 0xffffffd640000000   (1024 MB)
+[    0.000000]       kernel : 0xffffffff80000000 - 0xffffffffffffffff   (2047 MB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=64 to nr_cpu_ids=1.
+[    0.000000] rcu: 	RCU debug extended QS entry/exit.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+[    0.000000] RCU Tasks Trace: Setting shift to 0 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=1.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] riscv-intc: 64 local interrupts mapped
+[    0.000000] Oops - load access fault [#1]
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 6.12.0-gd9d19ed4ba82 #32
+[    0.000000] Hardware name: Allwinner D1 Nezha (DT)
+[    0.000000] IRQ stage: Linux
+[    0.000000] epc : plic_toggle+0x98/0xa0
+[    0.000000]  ra : plic_toggle+0x1e/0xa0
+[    0.000000] epc : ffffffff804f45ae ra : ffffffff804f4534 sp : ffffffff81603cb0
+[    0.000000]  gp : ffffffff8171dad8 tp : ffffffff8160dcc0 t0 : ffffffd60004b080
+[    0.000000]  t1 : 0000000000ff0000 t2 : 0000000000000000 s0 : ffffffff81603cf0
+[    0.000000]  s1 : 0000000000000001 a0 : 0000000000000000 a1 : 0000000000000000
+[    0.000000]  a2 : 0000000000000000 a3 : ffffffffffffffff a4 : 0000000000000002
+[    0.000000]  a5 : ffffffc604002080 a6 : 0000000000000000 a7 : 000000000000ff00
+[    0.000000]  s2 : ffffffd63efcfe98 s3 : ffffffd63efcfe98 s4 : ffffffd63fff9e68
+[    0.000000]  s5 : ffffffff8175b658 s6 : 0000000000002080 s7 : 0000000000000001
+[    0.000000]  s8 : 0000000000000002 s9 : 0000000000000000 s10: 0000000000000001
+[    0.000000]  s11: ffffffff81603d1c t3 : 0000000000ff0000 t4 : ffffffffffffffff
+[    0.000000]  t5 : 0000000000000000 t6 : ffffffff81603c10
+[    0.000000] status: 0000000200000100 badaddr: 0000000010002080 cause: 0000000000000005
+[    0.000000] [<ffffffff804f45ae>] plic_toggle+0x98/0xa0
+[    0.000000] [<ffffffff804f4928>] plic_probe+0x230/0x6ac
+[    0.000000] [<ffffffff80c274f4>] plic_early_probe+0x12/0x1a
+[    0.000000] [<ffffffff80c3baba>] of_irq_init+0x18e/0x2cc
+[    0.000000] [<ffffffff80c26268>] irqchip_init+0x18/0x3e
+[    0.000000] [<ffffffff80c04012>] init_IRQ+0xce/0x100
+[    0.000000] [<ffffffff80c00c1e>] start_kernel+0x4d4/0x85c
+[    0.000000] Code: 7442 74a2 69e2 6121 8082 000f 0140 4394 000f 08a0 (4713) fff7 
+[    0.000000] ---[ end trace 0000000000000000 ]---
+[    0.000000] Kernel panic - not syncing: Fatal exception in interrupt
+[    0.000000] ---[ end Kernel panic - not syncing: Fatal exception in interrupt ]---
+
+SyterKit> 
+SyterKit> 
+SyterKit> ls
+error: unknown command
+SyterKit> dirhelp
+Commands:
+  bootargs  Get/set bootargs for kernel
+  reload    Rescan TF Card and reload DTB, Kernel Image
+  print     Print out env config
+  boot      Boot to Linux
+  read-32   Read 32-bit value from device register or memory
+  write-32  Write 32-bit value to device register or memory
+  hexdump   Dumps memory region in hex
+SyterKit>  _____     _           _____ _ _   
+|   __|_ _| |_ ___ ___|  |  |_| |_ 
+|__   | | |  _| -_|  _|    -| | _| 
+|_____|_  |_| |___|_| |__|__|_|_|  
+      |___|                        
+***********************************
+ syterkit v0.0.0 Commit: 2c7791d3
+ github.com/YuzukiHD/SyterKit      
+***********************************
+ Built by: rustc 1.91.0-nightly (f2824da9 2025-08-28)
+
+DRAM size: 512M ð
+CLK: CPU PLL=PLL_CPU FREQ=1008MHz
+CLK: PLL_peri (2X)=1200MHz, (1X)=600MHz, (800M)=800MHz
+CLK: PLL_ddr=792MHz
+initialize sdmmc pins...
+initialize SMHC device...
+initializing SD card...
+SD card initialized, size: 119.08GB
+DEBUG - Creating new embedded-sdmmc::VolumeManager
+qwq
+qwq2
+load vol
+open dir
+read
+qvq, 1456348389
+[RustSBI] INFO  - Hello RustSBI!
+[RustSBI] INFO  - RustSBI version 0.4.0
+[RustSBI] INFO  - .______       __    __      _______.___________.  _______..______   __
+[RustSBI] INFO  - |   _  \     |  |  |  |    /       |           | /       ||   _  \ |  |
+[RustSBI] INFO  - |  |_)  |    |  |  |  |   |   (----`---|  |----`|   (----`|  |_)  ||  |
+[RustSBI] INFO  - |      /     |  |  |  |    \   \       |  |      \   \    |   _  < |  |
+[RustSBI] INFO  - |  |\  \----.|  `--'  |.----)   |      |  |  .----)   |   |  |_)  ||  |
+[RustSBI] INFO  - | _| `._____| \______/ |_______/       |__|  |_______/    |______/ |__|
+[RustSBI] INFO  - Initializing RustSBI machine-mode environment.
+[RustSBI] INFO  - Platform Name                 : Allwinner D1 Nezha
+[RustSBI] INFO  - Platform HART Count           : 1
+[RustSBI] INFO  - Enabled HARTs                 : [0]
+[RustSBI] INFO  - Platform IPI Extension        : TheadClint (Base Address: 0x14000000)
+[RustSBI] INFO  - Platform Console Extension    : Uart16550U32 (Base Address: 0x2500000)
+[RustSBI] WARN  - Platform Reset Device         : Not Available
+[RustSBI] INFO  - Platform HSM Extension        : Available
+[RustSBI] INFO  - Platform RFence Extension     : Available
+[RustSBI] INFO  - Platform SUSP Extension       : Available
+[RustSBI] INFO  - Platform PMU Extension        : Available
+[RustSBI] INFO  - Memory range                  : 0x40000000 - 0x80000000
+[RustSBI] INFO  - Platform Status               : Platform initialization complete and ready.
+[RustSBI] INFO  - PMP Configuration
+[RustSBI] INFO  - PMP        Range      Permission      Address                       
+[RustSBI] INFO  - PMP 0:     OFF        NONE            0x00000000
+[RustSBI] INFO  - PMP 1-2:   TOR        RWX/RWX         0x40000000 - 0x41000000
+[RustSBI] INFO  - PMP 3-5:   TOR        NONE/NONE       0x41017000 - 0x41020000 - 0x4104c000
+[RustSBI] INFO  - PMP 6:     TOR        RWX             0x80000000
+[RustSBI] INFO  - PMP 7:     TOR        RWX             0xffffffffffffffff
+[RustSBI] INFO  - Boot HART ID                  : 0
+[RustSBI] INFO  - Boot HART Privileged Version: : Version1_11
+[RustSBI] INFO  - Boot HART MHPM Mask:          : 0x000007
+[RustSBI] INFO  - Redirecting hart 0 to 0x00000041200000 in Supervisor mode.
+[    0.000000] Linux version 6.12.0-gd9d19ed4ba82 (woshiluo@woshiluo-laptop) (riscv64-linux-gnu-gcc (GCC) 15.1.0, GNU ld (GNU Binutils) 2.44) #32 SMP EVL Mon Sep 29 23:30:28 CST 2025
+[    0.000000] Machine model: Allwinner D1 Nezha
+[    0.000000] SBI specification v2.0 detected
+[    0.000000] SBI implementation ID=0x4 Version=0x400
+[    0.000000] SBI TIME extension detected
+[    0.000000] SBI IPI extension detected
+[    0.000000] SBI RFENCE extension detected
+[    0.000000] SBI DBCN extension detected
+[    0.000000] earlycon: sbi0 at I/O port 0x0 (options '')
+[    0.000000] printk: legacy bootconsole [sbi0] enabled
+[    0.000000] efi: UEFI not found.
+[    0.000000] Zone ranges:
+[    0.000000]   DMA32    [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000] SBI HSM extension detected
+[    0.000000] riscv: base ISA extensions acdfim
+[    0.000000] riscv: ELF capabilities acdfim
+[    0.000000] percpu: Embedded 23 pages/cpu s57000 r8192 d29016 u94208
+[    0.000000] Kernel command line: console=ttyS0,115200n8 debug loglevel=7,initcall_debug=1 init=/init earlycon=sbi clk_ignore_unused initcall_debug=0 console=ttyS0,115200 console=tty0 root=UUID=8fd6ad3c-a9dc-4d6a-9a42-307572fe21b8 cma=8M mac_addr=84:10:12:12:01:04 LANG=en_US.UTF-8
+[    0.000000] Unknown kernel command line parameters "cma=8M mac_addr=84:10:12:12:01:04 LANG=en_US.UTF-8", will be passed to user space.
+[    0.000000] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 262144
+[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size adjusted to 1MB
+[    0.000000] software IO TLB: area num 1.
+[    0.000000] software IO TLB: mapped [mem 0x000000007dd00000-0x000000007de00000] (1MB)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]       fixmap : 0xffffffc4fea00000 - 0xffffffc4ff000000   (6144 kB)
+[    0.000000]       pci io : 0xffffffc4ff000000 - 0xffffffc500000000   (  16 MB)
+[    0.000000]      vmemmap : 0xffffffc500000000 - 0xffffffc600000000   (4096 MB)
+[    0.000000]      vmalloc : 0xffffffc600000000 - 0xffffffd600000000   (  64 GB)
+[    0.000000]      modules : 0xffffffff0179d000 - 0xffffffff80000000   (2024 MB)
+[    0.000000]       lowmem : 0xffffffd600000000 - 0xffffffd640000000   (1024 MB)
+[    0.000000]       kernel : 0xffffffff80000000 - 0xffffffffffffffff   (2047 MB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=64 to nr_cpu_ids=1.
+[    0.000000] rcu: 	RCU debug extended QS entry/exit.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+[    0.000000] RCU Tasks Trace: Setting shift to 0 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=1.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] riscv-intc: 64 local interrupts mapped
+[    0.000000] Oops - load access fault [#1]
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 6.12.0-gd9d19ed4ba82 #32
+[    0.000000] Hardware name: Allwinner D1 Nezha (DT)
+[    0.000000] IRQ stage: Linux
+[    0.000000] epc : plic_toggle+0x98/0xa0
+[    0.000000]  ra : plic_toggle+0x1e/0xa0
+[    0.000000] epc : ffffffff804f45ae ra : ffffffff804f4534 sp : ffffffff81603cb0
+[    0.000000]  gp : ffffffff8171dad8 tp : ffffffff8160dcc0 t0 : ffffffd60004b080
+[    0.000000]  t1 : 0000000000ff0000 t2 : 0000000000000000 s0 : ffffffff81603cf0
+[    0.000000]  s1 : 0000000000000001 a0 : 0000000000000000 a1 : 0000000000000000
+[    0.000000]  a2 : 0000000000000000 a3 : ffffffffffffffff a4 : 0000000000000002
+[    0.000000]  a5 : ffffffc604002080 a6 : 0000000000000000 a7 : 000000000000ff00
+[    0.000000]  s2 : ffffffd63efcfe98 s3 : ffffffd63efcfe98 s4 : ffffffd63fff9e68
+[    0.000000]  s5 : ffffffff8175b658 s6 : 0000000000002080 s7 : 0000000000000001
+[    0.000000]  s8 : 0000000000000002 s9 : 0000000000000000 s10: 0000000000000001
+[    0.000000]  s11: ffffffff81603d1c t3 : 0000000000ff0000 t4 : ffffffffffffffff
+[    0.000000]  t5 : 0000000000000000 t6 : ffffffff81603c10
+[    0.000000] status: 0000000200000100 badaddr: 0000000010002080 cause: 0000000000000005
+[    0.000000] [<ffffffff804f45ae>] plic_toggle+0x98/0xa0
+[    0.000000] [<ffffffff804f4928>] plic_probe+0x230/0x6ac
+[    0.000000] [<ffffffff80c274f4>] plic_early_probe+0x12/0x1a
+[    0.000000] [<ffffffff80c3baba>] of_irq_init+0x18e/0x2cc
+[    0.000000] [<ffffffff80c26268>] irqchip_init+0x18/0x3e
+[    0.000000] [<ffffffff80c04012>] init_IRQ+0xce/0x100
+[    0.000000] [<ffffffff80c00c1e>] start_kernel+0x4d4/0x85c
+[    0.000000] Code: 7442 74a2 69e2 6121 8082 000f 0140 4394 000f 08a0 (4713) fff7 
+[    0.000000] ---[ end trace 0000000000000000 ]---
+[    0.000000] Kernel panic - not syncing: Fatal exception in interrupt
+[    0.000000] ---[ end Kernel panic - not syncing: Fatal exception in interrupt ]---
+ _____     _           _____ _ _   
+|   __|_ _| |_ ___ ___|  |  |_| |_ 
+|__   | | |  _| -_|  _|    -| | _| 
+|_____|_  |_| |___|_| |__|__|_|_|  
+      |___|                        
+***********************************
+ syterkit v0.0.0 Commit: 2c7791d3
+ github.com/YuzukiHD/SyterKit      
+***********************************
+ Built by: rustc 1.91.0-nightly (f2824da9 2025-08-28)
+
+DRAM size: 512M ð
+CLK: CPU PLL=PLL_CPU FREQ=1008MHz
+CLK: PLL_peri (2X)=1200MHz, (1X)=600MHz, (800M)=800MHz
+CLK: PLL_ddr=792MHz
+initialize sdmmc pins...
+initialize SMHC device...
+initializing SD card...
+SD card initialized, size: 119.08GB
+DEBUG - Creating new embedded-sdmmc::VolumeManager
+qwq
+qwq2
+load vol
+open dir
+read
+qvq, 1470405805
+[RustSBI] INFO  - Hello RustSBI!
+[RustSBI] INFO  - RustSBI version 0.4.0
+[RustSBI] INFO  - .______       __    __      _______.___________.  _______..______   __
+[RustSBI] INFO  - |   _  \     |  |  |  |    /       |           | /       ||   _  \ |  |
+[RustSBI] INFO  - |  |_)  |    |  |  |  |   |   (----`---|  |----`|   (----`|  |_)  ||  |
+[RustSBI] INFO  - |      /     |  |  |  |    \   \       |  |      \   \    |   _  < |  |
+[RustSBI] INFO  - |  |\  \----.|  `--'  |.----)   |      |  |  .----)   |   |  |_)  ||  |
+[RustSBI] INFO  - | _| `._____| \______/ |_______/       |__|  |_______/    |______/ |__|
+[RustSBI] INFO  - Initializing RustSBI machine-mode environment.
+[RustSBI] INFO  - Platform Name                 : Allwinner D1 Nezha
+[RustSBI] INFO  - Platform HART Count           : 1
+[RustSBI] INFO  - Enabled HARTs                 : [0]
+[RustSBI] INFO  - Platform IPI Extension        : TheadClint (Base Address: 0x14000000)
+[RustSBI] INFO  - Platform Console Extension    : Uart16550U32 (Base Address: 0x2500000)
+[RustSBI] WARN  - Platform Reset Device         : Not Available
+[RustSBI] INFO  - Platform HSM Extension        : Available
+[RustSBI] INFO  - Platform RFence Extension     : Available
+[RustSBI] INFO  - Platform SUSP Extension       : Available
+[RustSBI] INFO  - Platform PMU Extension        : Available
+[RustSBI] INFO  - Memory range                  : 0x40000000 - 0x80000000
+[RustSBI] INFO  - Platform Status               : Platform initialization complete and ready.
+[RustSBI] INFO  - PMP Configuration
+[RustSBI] INFO  - PMP        Range      Permission      Address                       
+[RustSBI] INFO  - PMP 0:     OFF        NONE            0x00000000
+[RustSBI] INFO  - PMP 1-2:   TOR        RWX/RWX         0x40000000 - 0x41000000
+[RustSBI] INFO  - PMP 3-5:   TOR        NONE/NONE       0x41017000 - 0x41020000 - 0x4104c000
+[RustSBI] INFO  - PMP 6:     TOR        RWX             0x80000000
+[RustSBI] INFO  - PMP 7:     TOR        RWX             0xffffffffffffffff
+[RustSBI] INFO  - Boot HART ID                  : 0
+[RustSBI] INFO  - Boot HART Privileged Version: : Version1_11
+[RustSBI] INFO  - Boot HART MHPM Mask:          : 0x000007
+[RustSBI] INFO  - Redirecting hart 0 to 0x00000041200000 in Supervisor mode.
+[    0.000000] Linux version 6.12.0-gd9d19ed4ba82 (woshiluo@woshiluo-laptop) (riscv64-linux-gnu-gcc (GCC) 15.1.0, GNU ld (GNU Binutils) 2.44) #32 SMP EVL Mon Sep 29 23:30:28 CST 2025
+[    0.000000] Machine model: Allwinner D1 Nezha
+[    0.000000] SBI specification v2.0 detected
+[    0.000000] SBI implementation ID=0x4 Version=0x400
+[    0.000000] SBI TIME extension detected
+[    0.000000] SBI IPI extension detected
+[    0.000000] SBI RFENCE extension detected
+[    0.000000] SBI DBCN extension detected
+[    0.000000] earlycon: sbi0 at I/O port 0x0 (options '')
+[    0.000000] printk: legacy bootconsole [sbi0] enabled
+[    0.000000] efi: UEFI not found.
+[    0.000000] Zone ranges:
+[    0.000000]   DMA32    [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x000000007fffffff]
+[    0.000000] SBI HSM extension detected
+[    0.000000] riscv: base ISA extensions acdfim
+[    0.000000] riscv: ELF capabilities acdfim
+[    0.000000] percpu: Embedded 23 pages/cpu s57000 r8192 d29016 u94208
+[    0.000000] Kernel command line: console=ttyS0,115200n8 debug loglevel=7,initcall_debug=1 init=/init earlycon=sbi clk_ignore_unused initcall_debug=0 console=ttyS0,115200 console=tty0 root=UUID=8fd6ad3c-a9dc-4d6a-9a42-307572fe21b8 cma=8M mac_addr=84:10:12:12:01:04 LANG=en_US.UTF-8
+[    0.000000] Unknown kernel command line parameters "cma=8M mac_addr=84:10:12:12:01:04 LANG=en_US.UTF-8", will be passed to user space.
+[    0.000000] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 262144
+[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size adjusted to 1MB
+[    0.000000] software IO TLB: area num 1.
+[    0.000000] software IO TLB: mapped [mem 0x000000007dd00000-0x000000007de00000] (1MB)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]       fixmap : 0xffffffc4fea00000 - 0xffffffc4ff000000   (6144 kB)
+[    0.000000]       pci io : 0xffffffc4ff000000 - 0xffffffc500000000   (  16 MB)
+[    0.000000]      vmemmap : 0xffffffc500000000 - 0xffffffc600000000   (4096 MB)
+[    0.000000]      vmalloc : 0xffffffc600000000 - 0xffffffd600000000   (  64 GB)
+[    0.000000]      modules : 0xffffffff0179d000 - 0xffffffff80000000   (2024 MB)
+[    0.000000]       lowmem : 0xffffffd600000000 - 0xffffffd640000000   (1024 MB)
+[    0.000000]       kernel : 0xffffffff80000000 - 0xffffffffffffffff   (2047 MB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=64 to nr_cpu_ids=1.
+[    0.000000] rcu: 	RCU debug extended QS entry/exit.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+[    0.000000] RCU Tasks Trace: Setting shift to 0 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=1.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] riscv-intc: 64 local interrupts mapped
+[    0.000000] Oops - load access fault [#1]
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 6.12.0-gd9d19ed4ba82 #32
+[    0.000000] Hardware name: Allwinner D1 Nezha (DT)
+[    0.000000] IRQ stage: Linux
+[    0.000000] epc : plic_toggle+0x98/0xa0
+[    0.000000]  ra : plic_toggle+0x1e/0xa0
+[    0.000000] epc : ffffffff804f45ae ra : ffffffff804f4534 sp : ffffffff81603cb0
+[    0.000000]  gp : ffffffff8171dad8 tp : ffffffff8160dcc0 t0 : ffffffd60004b080
+[    0.000000]  t1 : 0000000000ff0000 t2 : 0000000000000000 s0 : ffffffff81603cf0
+[    0.000000]  s1 : 0000000000000001 a0 : 0000000000000000 a1 : 0000000000000000
+[    0.000000]  a2 : 0000000000000000 a3 : ffffffffffffffff a4 : 0000000000000002
+[    0.000000]  a5 : ffffffc604002080 a6 : 0000000000000000 a7 : 000000000000ff00
+[    0.000000]  s2 : ffffffd63efcfe98 s3 : ffffffd63efcfe98 s4 : ffffffd63fff9e68
+[    0.000000]  s5 : ffffffff8175b658 s6 : 0000000000002080 s7 : 0000000000000001
+[    0.000000]  s8 : 0000000000000002 s9 : 0000000000000000 s10: 0000000000000001
+[    0.000000]  s11: ffffffff81603d1c t3 : 0000000000ff0000 t4 : ffffffffffffffff
+[    0.000000]  t5 : 0000000000000000 t6 : ffffffff81603c10
+[    0.000000] status: 0000000200000100 badaddr: 0000000010002080 cause: 0000000000000005
+[    0.000000] [<ffffffff804f45ae>] plic_toggle+0x98/0xa0
+[    0.000000] [<ffffffff804f4928>] plic_probe+0x230/0x6ac
+[    0.000000] [<ffffffff80c274f4>] plic_early_probe+0x12/0x1a
+[    0.000000] [<ffffffff80c3baba>] of_irq_init+0x18e/0x2cc
+[    0.000000] [<ffffffff80c26268>] irqchip_init+0x18/0x3e
+[    0.000000] [<ffffffff80c04012>] init_IRQ+0xce/0x100
+[    0.000000] [<ffffffff80c00c1e>] start_kernel+0x4d4/0x85c
+[    0.000000] Code: 7442 74a2 69e2 6121 8082 000f 0140 4394 000f 08a0 (4713) fff7 
+[    0.000000] ---[ end trace 0000000000000000 ]---
+[    0.000000] Kernel panic - not syncing: Fatal exception in interrupt
+[    0.000000] ---[ end Kernel panic - not syncing: Fatal exception in interrupt ]---

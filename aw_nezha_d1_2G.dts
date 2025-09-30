@@ -40,10 +40,8 @@
 	};
 
 	chosen {
-		bootargs = "console=ttyS0,115200n8 debug loglevel=7,initcall_debug=1 init=/init earlycon=sbi earlyprintk=sunxi-uart,0x02500000 clk_ignore_unused initcall_debug=0 console=ttyS0,115200 console=tty0 root=UUID=688238f2-5820-4107-8a46-632a04f9cd5b cma=8M mac_addr=84:10:12:12:01:04 LANG=en_US.UTF-8";
+		bootargs = "console=ttyS0,115200n8 debug loglevel=7,initcall_debug=1 init=/init earlycon=sbi clk_ignore_unused initcall_debug=0 console=ttyS0,115200 console=tty0 root=UUID=8fd6ad3c-a9dc-4d6a-9a42-307572fe21b8 cma=8M mac_addr=84:10:12:12:01:04 LANG=en_US.UTF-8";
 		stdout-path = "serial0:115200n8";
-//		linux,initrd-start = <0x42000000>;
-//		linux,initrd-end = <0x43000000>;
 	};
 
 	cpus {
@@ -96,7 +94,7 @@
 
 	memory@40000000 {
 		device_type = "memory";
-		reg = <0x00 0x40000000 0x00 0x80000000>;
+		reg = <0x00 0x40000000 0x00 0x40000000>;
 	};
 
 	dump_reg@20000 {
@@ -288,101 +286,89 @@
 			phandle = <0x09>;
 		};
 
-		uart@2500000 {
-			compatible = "allwinner,sun20i-uart";
-			device_type = "uart0";
-			reg = <0x00 0x2500000 0x00 0x400>;
-			interrupts-extended = <0x09 0x12 0x04>;
-			clocks = <0x01 0x3f>;
-			clock-names = "uart0";
-			resets = <0x01 0x12>;
-			sunxi,uart-fifosize = <0x40>;
-			uart0_port = <0x00>;
-			uart0_type = <0x02>;
+		serial@2500000 {
+			compatible = "snps,dw-apb-uart";
+			reg = <0x2500000 0x400>;
+			reg-io-width = <0x04>;
+			reg-shift = <0x02>;
+			interrupts = <0x12 0x04>;
+			clocks = <0x04 0x3e>;
+			resets = <0x04 0x12>;
+			dmas = <0x08 0x0e 0x08 0x0e>;
+			dma-names = "tx", "rx";
 			status = "okay";
-			pinctrl-names = "default", "sleep";
-			pinctrl-0 = <0x0d>;
-			pinctrl-1 = <0x0e>;
+			pinctrl-0 = <0x09>;
+			pinctrl-names = "default";
 		};
 
-		uart@2500400 {
-			compatible = "allwinner,sun20i-uart";
-			device_type = "uart1";
-			reg = <0x00 0x2500400 0x00 0x400>;
-			interrupts-extended = <0x09 0x13 0x04>;
-			sunxi,uart-fifosize = <0x100>;
-			clocks = <0x01 0x40>;
-			clock-names = "uart1";
-			resets = <0x01 0x13>;
-			uart1_port = <0x01>;
-			uart1_type = <0x04>;
+		serial@2500400 {
+			compatible = "snps,dw-apb-uart";
+			reg = <0x2500400 0x400>;
+			reg-io-width = <0x04>;
+			reg-shift = <0x02>;
+			interrupts = <0x13 0x04>;
+			clocks = <0x04 0x3f>;
+			resets = <0x04 0x13>;
+			dmas = <0x08 0x0f 0x08 0x0f>;
+			dma-names = "tx", "rx";
 			status = "okay";
-			pinctrl-names = "default", "sleep";
-			pinctrl-0 = <0x0f>;
-			pinctrl-1 = <0x10>;
+			uart-has-rtscts;
+			pinctrl-0 = <0x0a 0x0b>;
+			pinctrl-names = "default";
 		};
 
-		uart@2500800 {
-			compatible = "allwinner,sun20i-uart";
-			device_type = "uart2";
-			reg = <0x00 0x2500800 0x00 0x400>;
-			interrupts-extended = <0x09 0x14 0x04>;
-			sunxi,uart-fifosize = <0x100>;
-			clocks = <0x01 0x41>;
-			clock-names = "uart2";
-			resets = <0x01 0x14>;
-			uart2_port = <0x02>;
-			uart2_type = <0x04>;
-			status = "disabled";
-			pinctrl-names = "default", "sleep";
-			pinctrl-0 = <0x11>;
-			pinctrl-1 = <0x12>;
-		};
-
-		uart@2500c00 {
-			compatible = "allwinner,sun20i-uart";
-			device_type = "uart3";
-			reg = <0x00 0x2500c00 0x00 0x400>;
-			interrupts-extended = <0x09 0x15 0x04>;
-			sunxi,uart-fifosize = <0x100>;
-			clocks = <0x01 0x42>;
-			clock-names = "uart3";
-			resets = <0x01 0x15>;
-			uart3_port = <0x03>;
-			uart3_type = <0x04>;
-			status = "disabled";
-			pinctrl-names = "default", "sleep";
-			pinctrl-0 = <0x13>;
-			pinctrl-1 = <0x13>;
-		};
-
-		uart@2501000 {
-			compatible = "allwinner,sun20i-uart";
-			device_type = "uart4";
-			reg = <0x00 0x2501000 0x00 0x400>;
-			interrupts-extended = <0x09 0x16 0x04>;
-			sunxi,uart-fifosize = <0x100>;
-			clocks = <0x01 0x43>;
-			clock-names = "uart4";
-			resets = <0x01 0x16>;
-			uart4_port = <0x04>;
-			uart4_type = <0x02>;
+		serial@2500800 {
+			compatible = "snps,dw-apb-uart";
+			reg = <0x2500800 0x400>;
+			reg-io-width = <0x04>;
+			reg-shift = <0x02>;
+			interrupts = <0x14 0x04>;
+			clocks = <0x04 0x40>;
+			resets = <0x04 0x14>;
+			dmas = <0x08 0x10 0x08 0x10>;
+			dma-names = "tx", "rx";
 			status = "disabled";
 		};
 
-		uart@2501400 {
-			compatible = "allwinner,sun20i-uart";
-			device_type = "uart5";
-			reg = <0x00 0x2501400 0x00 0x400>;
-			interrupts-extended = <0x09 0x17 0x04>;
-			sunxi,uart-fifosize = <0x100>;
-			clocks = <0x01 0x44>;
-			clock-names = "uart5";
-			resets = <0x01 0x17>;
-			uart5_port = <0x05>;
-			uart5_type = <0x02>;
+		serial@2500c00 {
+			compatible = "snps,dw-apb-uart";
+			reg = <0x2500c00 0x400>;
+			reg-io-width = <0x04>;
+			reg-shift = <0x02>;
+			interrupts = <0x15 0x04>;
+			clocks = <0x04 0x41>;
+			resets = <0x04 0x15>;
+			dmas = <0x08 0x11 0x08 0x11>;
+			dma-names = "tx", "rx";
 			status = "disabled";
 		};
+
+		serial@2501000 {
+			compatible = "snps,dw-apb-uart";
+			reg = <0x2501000 0x400>;
+			reg-io-width = <0x04>;
+			reg-shift = <0x02>;
+			interrupts = <0x16 0x04>;
+			clocks = <0x04 0x42>;
+			resets = <0x04 0x16>;
+			dmas = <0x08 0x12 0x08 0x12>;
+			dma-names = "tx", "rx";
+			status = "disabled";
+		};
+
+		serial@2501400 {
+			compatible = "snps,dw-apb-uart";
+			reg = <0x2501400 0x400>;
+			reg-io-width = <0x04>;
+			reg-shift = <0x02>;
+			interrupts = <0x17 0x04>;
+			clocks = <0x04 0x43>;
+			resets = <0x04 0x17>;
+			dmas = <0x08 0x13 0x08 0x13>;
+			dma-names = "tx", "rx";
+			status = "disabled";
+		};
+
 
 		ce@03040000 {
 			compatible = "allwinner,sunxi-ce";
@@ -489,12 +475,10 @@
 		};
 
 		timer@2050000 {
-			compatible = "allwinner,sun4i-a10-timer";
-			device_type = "soc_timer";
-			reg = <0x00 0x2050000 0x00 0xa0>;
-			interrupts-extended = <0x09 0x4b 0x04>;
-			clocks = <0x0a>;
-			status = "okay";
+			compatible = "allwinner,sun20i-d1-timer", "allwinner,sun8i-a23-timer";
+			reg = <0x2050000 0xa0>;
+			interrupts = <0x4b 0x04 0x4c 0x04>;
+			clocks = <0x05>;
 		};
 
 		watchdog@6011000 {
