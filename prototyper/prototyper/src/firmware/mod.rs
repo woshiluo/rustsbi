@@ -88,6 +88,25 @@ pub fn set_pmp(memory_range: &Range<usize>) {
         assert_eq!(RODATA_START_ADDRESS & 0x3, 0);
         assert_eq!(RODATA_END_ADDRESS & 0x3, 0);
 
+        info!("set priority");
+        for i in 0..256 {
+            unsafe {
+                core::ptr::write_volatile((0x1000_0000 + i * 0x4) as *mut u32, 1);
+            }
+        }
+        info!("set sie");
+        for i in 0..9 {
+            unsafe {
+                core::ptr::write_volatile(
+                    (0x1000_0000 + 0x2080 + i * 0x4) as *mut u32,
+                    0xffff_ffff,
+                );
+            }
+        }
+        core::ptr::write_volatile((0x1000_0000 + 0x200000) as *mut u32, 0x7);
+        info!("write control");
+        core::ptr::write_volatile((0x1000_0000 + 0x1FFFFC) as *mut u32, 0x1);
+
         pmpcfg0::set_pmp(0, Range::OFF, Permission::RWX, false);
         pmpaddr0::write(0);
         pmpcfg0::set_pmp(1, Range::TOR, Permission::RWX, false);
