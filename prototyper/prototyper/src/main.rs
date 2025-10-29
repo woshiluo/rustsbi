@@ -39,6 +39,11 @@ pub const R_RISCV_RELATIVE: usize = 3;
 
 #[unsafe(no_mangle)]
 extern "C" fn rust_main(_hart_id: usize, opaque: usize, nonstandard_a2: usize) {
+    unsafe {
+        // use platform::console::Uart16550Wrap;
+        // let uart = Uart16550Wrap::<u32>::new(0x2500000);
+        PLATFORM.sbi_find_and_init_console();
+    }
     // Track whether SBI is initialized and ready.
 
     // Get boot information and prepare for kernel entry.
@@ -66,7 +71,7 @@ extern "C" fn rust_main(_hart_id: usize, opaque: usize, nonstandard_a2: usize) {
     let boot_hart_info = firmware::get_boot_hart(opaque, nonstandard_a2);
 
     // boot hart task entry.
-    if boot_hart_info.is_boot_hart {
+    if true {
         // Initialize the sbi heap
         sbi_heap_init();
 
@@ -168,6 +173,9 @@ unsafe extern "C" fn start() -> ! {
         // 1. Turn off interrupt.
         "
         csrw    mie, zero",
+        // "li t0, 0x2500000",
+        // "li t1, 0x41",
+        // "sw t1, 0(t0)",
         // 2. Initialize programming language runtime.
         // only clear bss if hartid matches preferred boot hart id.
         // Race
@@ -175,8 +183,15 @@ unsafe extern "C" fn start() -> ! {
             lla      t0, 6f
             li       t1, 1
             amoadd.w t0, t1, 0(t0)
-            bnez     t0, 4f
+            bnez     t0, 4f",
+        // "li t0, 0x2500000",
+        // "li t1, 0x42",
+        // "sw t1, 0(t0)",
+        "
             call     {relocation_update}",
+        // "li t0, 0x2500000",
+        // "li t1, 0x43",
+        // "sw t1, 0(t0)",
         // 3. Boot hart clear bss segment.
         "1:
             lla     t0, sbi_bss_start
@@ -193,14 +208,23 @@ unsafe extern "C" fn start() -> ! {
             amoadd.w t0, t1, 0(t0)
             j       5f",
         // 3.2 Other harts are waiting for bss ready signal.
-        "4:
-            lla     t0, 7f
+        "4:",
+        // "li t0, 0x2500000",
+        // "li t1, 0x44",
+        // "sw t1, 0(t0)",
+        "    lla     t0, 7f
             lw      t0, 0(t0)
             beqz    t0, 4b",
         // 4. Prepare stack for each hart.
-        "5:
-            call    {locate_stack}
-            call    {main}
+        "5:",
+         // "li t0, 0x2500000",
+         // "li t1, 0x44",
+         // "sw t1, 0(t0)",
+         "   call    {locate_stack}",
+         // "li t0, 0x2500000",
+         // "li t1, 0x45",
+         // "sw t1, 0(t0)",
+         "   call    {main}
             csrw    mscratch, sp
             j       {hart_boot}
             .balign  4",
@@ -235,7 +259,13 @@ unsafe extern "C" fn relocation_update() {
         "   ld t5, 16(t0)", // Get append
         "   add t4, t4, t2", // Add load offset to offset add append
         "   add t5, t5, t2",
+        // "li t0, 0x2500000",
+        // "li t1, 0x42",
+        // "sw t1, 0(t0)",
         "   sd t5, 0(t4)", // Update address
+        // "li t0, 0x2500000",
+        // "li t1, 0x43",
+        // "sw t1, 0(t0)",
         "   addi t0, t0, 24", // Get next rela item
         "2:",
         "   blt t0, t1, 1b",

@@ -4,6 +4,7 @@ use rustsbi::{Console, Physical, SbiRet};
 use spin::Mutex;
 
 use crate::platform::PLATFORM;
+use crate::platform::console::Uart16550Wrap;
 
 /// A trait that must be implemented by console devices to provide basic I/O functionality.
 pub trait ConsoleDevice {
@@ -25,7 +26,7 @@ pub trait ConsoleDevice {
 /// This provides a safe interface for interacting with console hardware through the
 /// SBI specification.
 pub struct SbiConsole {
-    inner: Mutex<Box<dyn ConsoleDevice>>,
+    inner: Mutex<Uart16550Wrap<u32>>,
 }
 
 impl SbiConsole {
@@ -34,7 +35,7 @@ impl SbiConsole {
     /// # Arguments
     /// * `inner` - A mutex containing the console device implementation
     #[inline]
-    pub fn new(inner: Mutex<Box<dyn ConsoleDevice>>) -> Self {
+    pub fn new(inner: Mutex<Uart16550Wrap<u32>>) -> Self {
         Self { inner }
     }
 

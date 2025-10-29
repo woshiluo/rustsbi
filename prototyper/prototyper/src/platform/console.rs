@@ -29,9 +29,46 @@ pub struct Uart16550Wrap<R: Register> {
 
 impl<R: Register> Uart16550Wrap<R> {
     pub fn new(base: usize) -> Self {
-        Self {
-            inner: base as *const Uart16550<R>,
+        let inner = base as *const Uart16550<R>;
+        use uart16550::*;
+        let write_num = |num: usize, data: u8| unsafe {
+            core::ptr::write_volatile((base + num * 32 / 8) as *mut u32, data as u32)
+        };
+        let read_num =
+            |num: usize| unsafe { core::ptr::read_volatile((base + num * 32 / 8) as *mut u32) };
+        unsafe {
+            // (*inner).ier().write(InterruptTypes::ZERO);
+            write_num(0, 0x46);
+            write_num(1, 0);
+
+            write_num(3, 0x80);
+            write_num(0, 13);
+            write_num(1, 0);
+
+            write_num(3, 0x03);
+            write_num(2, 0x01);
+            write_num(4, 0x00);
+            read_num(5);
+            read_num(0);
+            write_num(7, 0x00);
+            for i in 0..26 {
+                while ((read_num(5) & 0x20) == 0) {}
+                write_num(0, 0x41 + i);
+            }
+            // (*inner).write_divisor(13);
+            // (*inner)
+            //     .lcr()
+            //     .write((*inner).lcr().read().set_parity(PARITY::EVEN));
+            // (*inner).lcr().write(LineControl::CONFIG_8N1);
+            // (*inner).iir_fcr().write(TriggerLevel::_1.without_reset());
+            // (*inner).lsr().read();
+            // (*inner).rbr_thr().rx_data();
         }
+        // cast.mcr().write(ModemControl(0x00));
+        // unsafe {
+        //     (*inner).write("ab".as_bytes());
+        // };
+        Self { inner }
     }
 }
 
@@ -41,7 +78,21 @@ impl<R: Register> ConsoleDevice for Uart16550Wrap<R> {
     }
 
     fn write(&self, buf: &[u8]) -> usize {
-        unsafe { (*self.inner).write(buf) }
+        let base = 0x2500000;
+        let write_num = |num: usize, data: u8| unsafe {
+            core::ptr::write_volatile((base + num * 32 / 8) as *mut u32, data as u32)
+        };
+        let read_num =
+            |num: usize| unsafe { core::ptr::read_volatile((base + num * 32 / 8) as *mut u32) };
+        let mut count = 0;
+        unsafe {
+            for c in buf {
+                while ((read_num(5) & 0x20) == 0) {}
+                write_num(0, *c);
+                count += 1;
+            }
+        }
+        count
     }
 }
 

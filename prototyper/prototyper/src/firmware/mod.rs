@@ -89,9 +89,9 @@ pub fn set_pmp(memory_range: &Range<usize>) {
         assert_eq!(RODATA_END_ADDRESS & 0x3, 0);
 
         info!("set priority");
-        for i in 0..256 {
+        for i in 0..175 {
             unsafe {
-                core::ptr::write_volatile((0x1000_0000 + i * 0x4) as *mut u32, 1);
+                core::ptr::write_volatile((0x1000_0000 + i * 0x4) as *mut u32, 0);
             }
         }
         info!("set sie");

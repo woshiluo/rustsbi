@@ -33,7 +33,7 @@ use crate::sbi::rfence::SbiRFence;
 use crate::sbi::suspend::SbiSuspend;
 
 mod clint;
-mod console;
+pub mod console;
 mod reset;
 
 type BaseAddress = usize;
@@ -88,7 +88,7 @@ impl Platform {
         let tree: Tree = root.deserialize();
 
         // Get console device, init sbi console and logger.
-        self.sbi_find_and_init_console(&root);
+        // self.sbi_find_and_init_console();
         // Get clint and reset device, init sbi ipi, reset, hsm, rfence and susp extension.
         self.sbi_init_ipi_reset_hsm_rfence(&root);
         // Initialize pmu extension
@@ -99,7 +99,7 @@ impl Platform {
         self.ready.swap(true, Ordering::Release);
     }
 
-    fn sbi_find_and_init_console(&mut self, root: &serde_device_tree::buildin::Node) {
+    pub fn sbi_find_and_init_console(&mut self) {
         //  Get console device info
         // if let Some(stdout_path) = root.chosen_stdout_path() {
         //     if let Some(node) = root.find(stdout_path) {
@@ -130,6 +130,14 @@ impl Platform {
 
         // init console and logger
         self.sbi_console_init();
+        let base = 0x2500000;
+        let write_num = |num: usize, data: u8| unsafe {
+            core::ptr::write_volatile((base + num * 32 / 8) as *mut u32, data as u32)
+        };
+        let read_num =
+            |num: usize| unsafe { core::ptr::read_volatile((base + num * 32 / 8) as *mut u32) };
+        while ((read_num(5) & 0x20) == 0) {}
+        write_num(0, 0x41);
         logger::Logger::init().unwrap();
         info!("Hello RustSBI!");
     }
@@ -275,23 +283,15 @@ impl Platform {
 
     fn sbi_console_init(&mut self) {
         if let Some((base, console_type)) = self.info.console {
-            self.sbi.console = match console_type {
-                MachineConsoleType::Uart16550U8 => Some(SbiConsole::new(Mutex::new(Box::new(
-                    Uart16550Wrap::<u8>::new(base),
-                )))),
-                MachineConsoleType::Uart16550U32 => Some(SbiConsole::new(Mutex::new(Box::new(
-                    Uart16550Wrap::<u32>::new(base),
-                )))),
-                MachineConsoleType::UartAxiLite => Some(SbiConsole::new(Mutex::new(Box::new(
-                    MmioUartAxiLite::new(base),
-                )))),
-                MachineConsoleType::UartBflb => Some(SbiConsole::new(Mutex::new(Box::new(
-                    UartBflbWrap::new(base),
-                )))),
-                MachineConsoleType::UartSifive => Some(SbiConsole::new(Mutex::new(Box::new(
-                    UartSifiveWrap::new(base),
-                )))),
+            self.sbi.console = Some(SbiConsole::new(Mutex::new(Uart16550Wrap::<u32>::new(base))));
+            let base = 0x2500000;
+            let write_num = |num: usize, data: u8| unsafe {
+                core::ptr::write_volatile((base + num * 32 / 8) as *mut u32, data as u32)
             };
+            let read_num =
+                |num: usize| unsafe { core::ptr::read_volatile((base + num * 32 / 8) as *mut u32) };
+            while ((read_num(5) & 0x20) == 0) {}
+            write_num(0, 0x42);
         } else {
             self.sbi.console = None;
         }

@@ -20,6 +20,11 @@
 		status = "disabled";
 	};
 
+	memory@40000000 {
+		device_type = "memory";
+		reg = <0x40000000 0x40000000>;
+	};
+
 	soc {
 		compatible = "simple-bus";
 		ranges;
@@ -27,12 +32,6 @@
 		#address-cells = <0x01>;
 		#size-cells = <0x01>;
 		interrupt-parent = <0x03>;
-
-		clint@14000000 {
-			compatible = "allwinner,sun20i-d1-clint", "sifive,clint0";
-			reg = <0x00 0x14000000 0x00 0xc000>;
-			reg-io-width = <0x04>;
-		};
 
 		pinctrl@2000000 {
 			compatible = "allwinner,sun20i-d1-pinctrl";
@@ -921,7 +920,7 @@
 		};
 
 		interrupt-controller@10000000 {
-			compatible = "allwinner,sun20i-d1-plic", "thead,c900-plic", "riscv,plic0";
+			compatible = "allwinner,sun20i-d1-plic", "thead,c900-plic";
 			reg = <0x10000000 0x4000000>;
 			interrupts-extended = <0x2d 0x0b 0x2d 0x09>;
 			interrupt-controller;
@@ -929,6 +928,12 @@
 			#address-cells = <0x00>;
 			#interrupt-cells = <0x02>;
 			phandle = <0x03>;
+		};
+
+		clint@14000000 {
+			compatible = "allwinner,sun20i-d1-clint", "sifive,clint0";
+			reg = <0x14000000 0xc000>;
+			reg-io-width = <0x04>;
 		};
 
 		watchdog@1700400 {
@@ -1042,8 +1047,8 @@
 	};
 
 	chosen {
-		stdout-path = "serial0:115200n8";
 		bootargs = "console=ttyS0,115200n8 debug loglevel=7,initcall_debug=1 init=/init earlycon=sbi clk_ignore_unused initcall_debug=0 console=ttyS0,115200 console=tty0 root=UUID=8fd6ad3c-a9dc-4d6a-9a42-307572fe21b8 cma=8M mac_addr=84:10:12:12:01:04 LANG=en_US.UTF-8";
+		stdout-path = "serial0:115200n8";
 	};
 
 	usbvbus {
@@ -1065,19 +1070,6 @@
 		vin-supply = <0x15>;
 		phandle = <0x2f>;
 	};
-
-	dram {
-		device_type = "dram";
-		compatible = "allwinner,dram";
-		clocks = <0x01 0x02>;
-		clock-names = "pll_ddr";
-	};
-
-	memory@40000000 {
-		device_type = "memory";
-		reg = <0x00 0x40000000 0x00 0x80000000>;
-	};
-
 
 	wifi-pwrseq {
 		compatible = "mmc-pwrseq-simple";
